@@ -19,30 +19,57 @@ function playRound(playerSelection, computerSelection)
     computerSelection = computerSelection.toLowerCase();
     if (playerSelection == computerSelection)
     {
-        return 'Tie!'
+        return -1
     }
     else if(playerSelection == 'rock')
     {
         if(computerSelection == 'scissors')
-            return 'You win! Rock beats Scissors'
+            return 1
         else
-            return 'You lose! Paper beats Rock'
+            return 0
     }
     else if(playerSelection == 'scissors')
     {
         if(computerSelection == 'paper')
-            return 'You win! Scissors beats Paper'
+            return 1
         else
-            return 'You lose! Rock beats Scissors'
+            return 0
     }
     else if(playerSelection == 'paper')
     {
         if(computerSelection == 'rock')
-            return 'You win! Paper beats Rock'
+            return 1
         else
-            return 'You lose! Scissors beats Paper'
+            return 0
     }
 }
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function playGame()
+{
+    let pscore = 0
+    let cscore = 0
+    for(let round=1; round<= 5; round=round+1)
+    {
+        let compChoice = getComputerChoice();
+        let playerChoice = prompt("Enter your choice: ");
+        let result = playRound(playerChoice, compChoice)
+        if(result==0)
+        {
+            cscore+=1
+            console.log('You lose this round! '+compChoice+' beats '+playerChoice)
+        }
+        else if(result==1)
+        {
+            pscore+=1
+            console.log('You win this round! '+playerChoice+' beats '+compChoice)
+        }
+        else
+            console.log('This round is a tie!')
+    }
+    if(pscore==cscore)
+        return 'Tie'
+    else if(pscore>cscore)
+        return 'Player wins'
+    else
+        return 'Computer wins'
+}
+console.log(playGame())
