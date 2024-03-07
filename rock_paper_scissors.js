@@ -1,9 +1,13 @@
-const rockBtn = document.querySelector(".rock");
-const paperBtn = document.querySelector(".paper");
-const scissorsBtn = document.querySelector(".scissors");
-rockBtn.addEventListener("click",playRound("Rock"));
-paperBtn.addEventListener("click",playRound("Paper"));
-scissorsBtn.addEventListener("click",playRound("Scissors"));
+let rockBtn = document.querySelector(".rock");
+let paperBtn = document.querySelector(".paper");
+let scissorsBtn = document.querySelector(".scissors");
+rockBtn.addEventListener("click",() => playRoundResults("Rock",getComputerChoice()));
+paperBtn.addEventListener("click",() => playRoundResults("Paper",getComputerChoice()));
+scissorsBtn.addEventListener("click",() => playRoundResults("Scissors",getComputerChoice()));
+let resultDiv = document.createElement("div");
+resultDiv.classList.add("result");
+let computerScore = 0;
+let playerScore = 0;
 function getComputerChoice()
 {
     let choice = Math.floor(Math.random()*3)
@@ -16,12 +20,11 @@ function getComputerChoice()
         case 2:
             return 'Scissors'
         default:
-            return 'Something wrong with comper choice'
+            return 'Something wrong with computer choice'
     }
 }
-let playRound = function(playerSelection)
+function playRound(playerSelection, computerSelection)
 {
-    computerSelection = getComputerChoice();
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
     if (playerSelection == computerSelection)
@@ -50,7 +53,24 @@ let playRound = function(playerSelection)
             return 0
     }
 }
-function playGame()
+function playRoundResults(playerSelection, computerSelection)
+{
+    let result = playRound(playerSelection,  computerSelection);
+    if(result==0)
+    {
+        computerScore+=1
+        console.log('You lose this round! '+computerSelection+' beats '+playerSelection)
+    }
+    else if(result==1)
+    {
+        playerScore+=1
+        console.log('You win this round! '+playerSelection+' beats '+computerSelection)
+    }
+    else
+        console.log('This round is a tie!')
+
+}
+/*function playGame()
 {
     let pscore = 0
     let cscore = 0
@@ -79,4 +99,4 @@ function playGame()
     else
         return 'Computer wins'
 }
-console.log(playGame())
+console.log(playGame())*/
