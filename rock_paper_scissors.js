@@ -23,6 +23,8 @@ function getComputerChoice()
 }
 function playRound(playerSelection, computerSelection)
 {
+    document.getElementById("comp-choice").innerText = computerSelection.toUpperCase();
+    document.getElementById("play-choice").innerText = playerSelection.toUpperCase();
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
     if (playerSelection == computerSelection)
@@ -79,7 +81,9 @@ function finalResults()
         else
         {
             let winner = (playerScore>computerScore)?"Player":"Computer";
-            document.querySelector(".win-text").textContent = winner + " wins!";
+            
+            document.querySelector(".win-text").textContent = (winner + " wins!").toUpperCase();
+            document.querySelector(".win-text").style = "font-size: larger; color: #66fcf1"
         }
     }
 }
