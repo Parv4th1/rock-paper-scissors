@@ -4,8 +4,11 @@ let scissorsBtn = document.querySelector(".scissors");
 rockBtn.addEventListener("click",() => playRoundResults("Rock",getComputerChoice()));
 paperBtn.addEventListener("click",() => playRoundResults("Paper",getComputerChoice()));
 scissorsBtn.addEventListener("click",() => playRoundResults("Scissors",getComputerChoice()));
+let resultBtn = document.querySelector(".show-results");
+resultBtn.addEventListener("click",() => finalResults());
 let computerScore = 0;
 let playerScore = 0;
+let showing = false;
 function getComputerChoice()
 {
     let choice = Math.floor(Math.random()*3)
@@ -68,14 +71,14 @@ function playRoundResults(playerSelection, computerSelection)
     }
     else
         console.log('This round is a tie!')
-    finalResults();
     document.getElementById("playscore").innerText = playerScore;
     document.getElementById("compscore").innerText = computerScore;
+    if(showing == true)
+        finalResults();
 }
 function finalResults()
 {
-    if(playerScore>=5 || computerScore>=5)
-    {
+    showing = true;
         if(playerScore == computerScore)
             document.querySelector(".win-text").textContent = "It's a tie!"
         else
@@ -85,7 +88,6 @@ function finalResults()
             document.querySelector(".win-text").textContent = (winner + " wins!").toUpperCase();
             document.querySelector(".win-text").style = "font-size: larger; color: #66fcf1"
         }
-    }
 }
 /*function playGame()
 {
