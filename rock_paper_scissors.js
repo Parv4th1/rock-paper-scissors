@@ -1,9 +1,9 @@
-let rockBtn = document.querySelector(".rock");
-let paperBtn = document.querySelector(".paper");
-let scissorsBtn = document.querySelector(".scissors");
-rockBtn.addEventListener("click",playRound("Rock",getComputerChoice()));
-paperBtn.addEventListener("click",playRound("Paper",getComputerChoice()));
-scissorsBtn.addEventListener("click",playRound("Scissors",getComputerChoice()));
+const rockBtn = document.querySelector(".rock");
+const paperBtn = document.querySelector(".paper");
+const scissorsBtn = document.querySelector(".scissors");
+rockBtn.addEventListener("click",playRound("Rock"));
+paperBtn.addEventListener("click",playRound("Paper"));
+scissorsBtn.addEventListener("click",playRound("Scissors"));
 function getComputerChoice()
 {
     let choice = Math.floor(Math.random()*3)
@@ -19,8 +19,9 @@ function getComputerChoice()
             return 'Something wrong with comper choice'
     }
 }
-function playRound(playerSelection, computerSelection)
+let playRound = function(playerSelection)
 {
+    computerSelection = getComputerChoice();
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
     if (playerSelection == computerSelection)
