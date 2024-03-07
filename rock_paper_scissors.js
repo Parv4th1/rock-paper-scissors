@@ -4,8 +4,6 @@ let scissorsBtn = document.querySelector(".scissors");
 rockBtn.addEventListener("click",() => playRoundResults("Rock",getComputerChoice()));
 paperBtn.addEventListener("click",() => playRoundResults("Paper",getComputerChoice()));
 scissorsBtn.addEventListener("click",() => playRoundResults("Scissors",getComputerChoice()));
-let resultDiv = document.createElement("div");
-resultDiv.classList.add("result");
 let computerScore = 0;
 let playerScore = 0;
 function getComputerChoice()
@@ -68,7 +66,22 @@ function playRoundResults(playerSelection, computerSelection)
     }
     else
         console.log('This round is a tie!')
-
+    finalResults();
+    document.getElementById("playscore").innerText = playerScore;
+    document.getElementById("compscore").innerText = computerScore;
+}
+function finalResults()
+{
+    if(playerScore>=5 || computerScore>=5)
+    {
+        if(playerScore == computerScore)
+            document.querySelector(".win-text").textContent = "It's a tie!"
+        else
+        {
+            let winner = (playerScore>computerScore)?"Player":"Computer";
+            document.querySelector(".win-text").textContent = winner + " wins!";
+        }
+    }
 }
 /*function playGame()
 {
