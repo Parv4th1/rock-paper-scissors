@@ -1,3 +1,9 @@
+let rockBtn = document.querySelector(".rock");
+let paperBtn = document.querySelector(".paper");
+let scissorsBtn = document.querySelector(".scissors");
+rockBtn.addEventListener("click",playRound("Rock",getComputerChoice()));
+paperBtn.addEventListener("click",playRound("Paper",getComputerChoice()));
+scissorsBtn.addEventListener("click",playRound("Scissors",getComputerChoice()));
 function getComputerChoice()
 {
     let choice = Math.floor(Math.random()*3)
